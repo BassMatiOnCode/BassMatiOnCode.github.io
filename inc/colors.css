@@ -1,0 +1,13 @@
+/*
+ *		colors.css
+ *		2020-11-29 usp
+ */
+
+.rule { border-color: #6060A0;}
+body { color : #333; }
+cc { color : #4b4; }
+h1.page-title { color : #6060A0; }
+h1, h2, h3, h4, h5, h6 { color : #6060A0 ; }
+hi { color: #E77F00 ; }
+pre { color : #303080; background-color : #F0F0F0 ; }
+tt { color : #8080D0; }

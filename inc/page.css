@@ -1,0 +1,187 @@
+/*
+ *	page.css
+ *	2021-02-12 usp
+ */
+
+@import url(./colors.css);
+
+@font-face { 
+	font-family: arial narrow; 
+	font-style: normal; 
+	font-weight: 400;
+	src: 	local("Arial Narrow"), 
+		local("ArialNarrow-Regular"), 
+		url(./fnt/arial-narrow.woff) format("woff"), 
+		url(./fnt/arial-narrow.ttf) format("truetype");
+	}
+
+@font-face { 
+	font-family: MPlus1M-regular; 
+	font-style: normal; 
+	src: 	local("M+ 1m"), 
+		url(./fnt/mplus-1m-regular.ttf) format("truetype");
+	}
+
+.imgbox {
+	border : 1px solid silver;
+	width : 100% ;
+	overflow : auto ;
+	}
+
+.menu-bar {
+	position : sticky;
+	top : 5px ;
+	width : 100% ;
+	height : auto ;
+	border : 1px none silver;
+	}
+
+.note {
+	border-left: 5px dotted orange ;
+	margin-left: 20px;
+	padding-left: 10px ;
+	margin-right: 40px ;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	font-family: "Arial Narrow";
+	}
+
+[cbs] {
+	background-image : url(orange-plus.svg) ;
+	background-repeat : no-repeat ;
+	background-size : 28px 28px ;
+	background-position-y : 2px ; 
+	padding-left : 40px ;
+	line-height : 32px; 
+}
+
+[cbs="0"] {
+	background-image: url(orange-minus.svg) ;
+	}
+
+[cbs="1"] {
+	background-image: url(orange-plus.svg) ;
+	}
+
+[collapsed="1"] {
+	display : none;
+	}
+
+[disable-collapse="1"] [cbs] {
+	background-image: url(orange-minus.svg) ;
+	}
+
+[disable-collapse="1"] [collapsed] {
+	display : block ;
+	}
+	
+[fretboard] {
+	font-family: monospace ;
+	display: inline-block ;
+	max-width: 100% ;
+	margin-right: 20px ;
+	line-height : 100% ;
+	}
+
+body {
+	font-family : "Segoe UI", Calibri, Verdana, Arial, "Palatino Linotype", Hevetica ;
+	margin : 40px 20px 40px 40px ;
+	line-height : 180% ;
+	padding-bottom : 60px ;
+	}
+
+dd {
+	margin-left: 20px ;
+	}
+
+div[collapsed] {
+	margin-bottom : 40px ;
+	}
+
+dl.description-list dd {
+	margin-top : 20px ;
+	margin-bottom : 20px ;
+	}
+
+figcaption {
+	font-family : "Times New Roman";
+	font-style : italic ;
+	color: #A0A0A0 ;
+	margin-bottom : 5px;
+	margin-left : 10px ;
+	}
+
+h1, h2, h3, h4, h5, h6 { 
+	font-family : "Arial Narrow", "Times New Roman", "Sans-Serif";
+	line-height : 32px; 
+	font-weight : normal ;
+	margin-top : 40px;
+	margin-bottom : 10px;
+	}
+
+figcaption+.imgbox {
+	margin-top : 5px ;
+	}
+
+h1+h2, h2+h3, h3+h4, h4+h5 {
+	margin-top: 10px;
+	}
+
+h1 { font-size: 1.7em ; }
+h1.page-title { font-size : 2em ; }
+h1.page-subtitle { font-size : 1.3em ; }
+h2 {	font-size : 1.5em ; }
+h3 { font-size : 1.3em ; }
+h4 {	font-size : 1.2em ; }
+h5 { 
+	font-size: 1.0em ;
+	font-style : italic ;
+	margin-bottom : 10px ;
+	}
+
+li p { 
+	margin-top : 0px ;
+	margin-bottom : 0px ;
+	}
+
+pre { 
+	font-family: "Palatino Linotype", "Times New Roman", Serif, Consolas;
+	line-height: 160% ;
+	margin-left : 0px ; 
+	border : 1px solid silver ;
+	padding : 10px 10px 11px 10px ;
+	overflow: auto ;
+	}
+
+pre.tall {
+	display : inline-block;
+	max-width: 95% ;
+	}
+
+tt {
+	font-size: 100% ;
+	font-family: "Palatino Linotype", Consolas, "Lucida Console" ;
+	}
+
+table.flat-borders {
+	border-collapse: collapse;
+	}
+
+table.flat-borders td, th {
+	border : solid 1px silver;
+	padding-left: 5px;
+	padding-right: 5px;
+	}
+
+ul[collapsible] {
+	padding-left : 0px;
+	}
+
+ul[collapsible] li {
+	list-style-type: none;
+	padding-left: 40px ;
+	}
+
+ul[collapsible] ul {
+	padding-left : 0px;
+
