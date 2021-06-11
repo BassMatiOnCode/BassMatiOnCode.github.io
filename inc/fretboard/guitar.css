@@ -41,10 +41,13 @@ table.chord tbody td {
 	}
 table.chord tbody th {
 	border-style: none;
-	border-right: 1px solid darkslategrey;
 	color: black;
 	font-weight: normal;
 	font-size: 120%;
+	}
+table.chord tbody th:first-child {
+	border-right: 1px solid darkslategrey;	
+	font-size : 160% ;
 	}
 table.chord tbody td:not(:empty) {
     background-color:lightgrey;
@@ -72,8 +75,9 @@ table.chord.inline+table.chord.inline {
 	margin-left: 20px;
 	}
 table.chord tr[string] td {
-	background-image: url(./fretboard/string-image.png);
+	background-image: url(string-image.png);
 	}
+
 table.interval-list {
 	border-collapse: collapse;
 	}
@@ -89,10 +93,16 @@ table.interval-list th {
 
 table.fretboard {
 	border-collapse : collapse ;
+	font-family: 'Arial Narrow', 'Franklin Gothic Medium', Arial, sans-serif;
 	}
 table.fretboard {
 	text-align : center ;
 	font-size : 80% ;
+	}
+table.fretboard th {
+	border-style : none ;
+	font-size : 120% ;
+	font-weight : normal ;
 	}
 table.fretboard tr[string] td  {
 	font-family : "Arial Narrow" ;
@@ -100,8 +110,8 @@ table.fretboard tr[string] td  {
 	border-right : 1px solid darkgray;
 	height : 20px ;
 	width : 20px ;
-	background-image : url(./fretboard/string-image.png);
-	background-size : 50% 50%;
+	background-image : url(string-image.png);
+	xbackground-size : 80% 80%;
 	background-repeat : repeat-x ;
 	background-position : center ;
 	}

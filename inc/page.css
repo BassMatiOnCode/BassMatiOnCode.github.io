@@ -65,6 +65,7 @@
 
 [collapsed="1"] {
 	display : none;
+	margin-bottom: 5px;
 	}
 
 [disable-collapse="1"] [cbs] {
@@ -96,6 +97,14 @@ dd {
 
 div[collapsed] {
 	margin-bottom : 40px ;
+	}
+
+div[collapsed]+[cbs] {
+	transition : margin-top 1s linear;
+	}
+
+div[collapsed="1"]+[cbs="1"] {
+	margin-top: 5px;
 	}
 
 dl.description-list dd {
@@ -145,7 +154,7 @@ li p {
 	}
 
 pre { 
-	font-family: "Palatino Linotype", "Times New Roman", Serif, Consolas;
+	font-family: "Times New Roman", "Palatino Linotype", Serif, Consolas;
 	line-height: 160% ;
 	margin-left : 0px ; 
 	border : 1px solid silver ;
@@ -163,6 +172,9 @@ tt {
 	font-family: "Palatino Linotype", Consolas, "Lucida Console" ;
 	}
 
+table.centered tbody td {
+	text-align : center ;
+	}
 table.flat-borders {
 	border-collapse: collapse;
 	}
