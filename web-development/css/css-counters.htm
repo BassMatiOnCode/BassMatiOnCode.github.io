@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="template-info" file-name="empty.htm"version="2021-08-04" editor-name="usp" />
+<meta name="author" content="usp" />
+<meta name="creation-date" content="2021-08-17" />
+<meta name="editor" content="usp" />
+<meta name="change-date" content="2021-08-17" />
+<meta name="version" content="1" />
+<meta name="categories" content="Web Development > CSS" />
+<meta name="tags" content="web, development, css, counter" />
+<meta name="description" content="We all (should) know HTML ordered lists (OL) elements. List items are numbered automatically, and their ordninal number can be rendered in various forms (as decimal number, letter, with roman numerals, etc). This numbering mechanism is accessible to the developer through CSS counters." />
+<title>Web Development - CSS Counters</title>
+
+<link rel="stylesheet" href="/inc/page.css" />
+ 
+</head><body><div id="content"><h1>CSS Counters</h1>
+
+<p id="page-abstract"></p>
+
+<p>With CSS counters, not only OL>LI elements can be numbered, but <em>every</em> element sequence. According to <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters">MDN</a>, counters are variables, maintained by CSS based on the appearance of elements in the document. That sounds promising!</p>
+
+<h2 cbc>Counter Reset</h2><div>
+
+<p>A counter is created and initialized with a counter reset property. This is often done on the topmost container element, the BODY:</p>
+
+<figcaption class="listing">Counter reset</figcaption><pre>
+body { counter-reset : my-counter 123 ; } 
+</pre>
+
+<p><tt>counter-reset</tt> is a CSS property that sets a named counter to a specified value. The value is optional and zero by default.</p>
+
+<p>Multiple counters can be reset in a single instruction:</p>
+
+<figcaption class="listing">Counter reset</figcaption><pre>
+body { counter-reset : chapterCounter sectionCounter pageCounter ; } 
+</pre>
+
+<p>Instead of a numeric value, keywords like <tt>none</tt>, <tt>inherit</tt>, <tt>initial</tt>, <tt>revert</tt> and <tt>unset</tt> can be used. Refer to the <a href="#ref-1">MDN documentation</a> for details.</p>
+
+<!-- Counter Reset --></div>
+
+<h2 cbc>Setting the Counter Value</h2><div>
+
+<p>A counter value can be set with the <tt>counter-increment</tt>, <tt>counter-set</tt> and <tt>counter-reset</tt> properties. The following example increments the chapter counter whenever an element with a class name of "chapter" appears:</p>
+
+<figcaption class="listing">Incrementing a counter</figcaption><pre>
+.chapter { counter-increment: chapterCounter ; }
+</pre>
+
+<!-- Setting the Counter Value --></div>
+
+<h2 cbc>Rendering a Counter</h2><div>
+
+<p>To render a counter into the document, the CSS content property with :before and :after selectors can be used:</p>
+
+<figcaption class="listing">Rendering a counter value</figcaption><pre>
+.chapter::before { content: "Chapter " <hi>counter</hi>( chapterCounter ) ": " ; }
+</pre>
+
+<p>The <tt>counter</tt> is a CSS function that returns the value of the specified counter variable that was defined in the same element or one of its parent elements.</p>
+
+<p>The related HTML code looks like this:</p>
+
+<figcaption class="listing">HTML code</figcaption><pre>
+&lt;h1 class="chapter"&gt;Introduction&lt;/h1&gt; 
+&lt;h1 class="chapter"&gt;Details&lt;/h1&gt; 
+&lt;h1 class="chapter"&gt;Conclusion&lt;/h1&gt; 
+</pre>
+
+<p>This code is rendered in the browser as follows:</p>
+
+<figcaption class="listing">Rendered result</figcaption><pre>
+Chapter 1: Introduction
+Chapter 2: Details
+Chapter 3: Conclusion
+</pre>
+
+<!-- Rendering a Counter --></div>
+
+<h2 cbc>Nested Counters</h2><div>
+
+<p>Have you ever created complex structured instruction lists? Then you know hassle of renumbering when steps were added or deleted for sure&hellip;</p>
+
+<p>As demonstrated above, the <tt>counter-reset</tt> instruction was applied to the container of items, the BODY element. But lets have a look at nested lists, like this example:</p>
+
+<figcaption class="listing">Nested lists example</figcaption><pre>
+<hi>&lt;ul&gt;</hi>
+&lt;li&gt;item&lt;/li&gt;
+&lt;li&gt;item
+	<hi>&lt;ul&gt;</hi>
+	&lt;li&gt;item&lt;/li&gt;
+	&lt;li&gt;item
+		<hi>&lt;ul&gt;</hi>
+		&lt;li&gt;item&lt;/li&gt;
+		&lt;li&gt;item&lt;/li&gt;
+		&lt;li&gt;item&lt;/li&gt;
+		<hi>&lt;/ul&gt;</hi>&lt;/li&gt;
+	&lt;li&gt;item&lt;/li&gt;
+	<hi>&lt;/ul&gt;</hi>&lt;/li&gt;
+&lt;li&gt;item&lt;/li&gt;
+&lt;li&gt;item&lt;/li&gt;
+<hi>&lt;/ul&gt;</hi>
+</pre>
+
+<p>If we have such a counter reset instruction &hellip;</p>
+
+<figcaption class="listing">Item counter reset</figcaption><pre>
+ul {
+	list-style-type : none ;
+	counter-reset : counter ;
+	}
+</pre>
+
+<p>&hellip; then a new counter is created for every new UL element encountered in the document. The counters have the same name, but are bound to and maintained by the HTML element where they were defined on.</p>
+
+<p>Now let's have a look on how we can render the counters:</p>
+
+<figcaption class="listing">Rendering the item counter</figcaption><pre>
+li::before {
+	counter-increment : counter ;
+	content : <hi>counters</hi>( counter, "." ) " " ;
+</pre>
+
+<p>Note that we use the <tt>counters</tt> function now, instead of <tt>counter</tt> as before. Before going into the details, let's have a look at the live results:</p>
+
+<figcaption class="listing">Rendering of nested counters</figcaption>
+<iframe class="border-top" style="height: 221px" src="css-counters-test-1.htm"></iframe>
+
+<p>Isn't that beautiful?</p>
+<p>Obviously, the <tt>counters</tt> function walks along the path of parent elements in the DOM and collects and concatenates the "counter" instances, held in the UL elements.</p>
+<p>No need for JavaScripting anymore!</p>
+
+<!-- Nested Counters --></div>
+
+<h2 cbc>Additional References</h2><div>
+
+<dl class="link-list">
+<dt id="ref-1"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters">Using CSS Counters</a> on MDN</dt>
+<dd><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters#see_also">Related Keywords</a></dd>
+</dl>
+
+<!-- Additional References --></div>
+
+</div><script type="module" src="/inc/page.js" ></script></body></html>

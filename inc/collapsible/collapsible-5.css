@@ -1,0 +1,65 @@
+/* collapsible-block-5.css */
+/* 2021-08-02 usp */
+
+[cbc] {
+	transition : margin-top 0.9s linear;
+	}
+
+[cbc]:before {
+    content: "";
+    display: inline-block;
+    height: 0.8em;
+    width: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+	background-position-x : center ;
+	margin-bottom: -0.2ex ;
+	}
+
+[cbc="expanded"]:before {
+    background-image: url("/inc/collapsible/orange-minus.svg") !important;
+	}
+
+[cbc="collapsed"] + * + [cbc] {
+	margin-top: 0px ;
+	}
+
+[cbc="collapsed"]:before {
+    background-image: url("/inc/collapsible/orange-plus.svg") !important;
+	}
+
+ul.collapsible li:before {
+    margin-left: -20px;
+    background-image: url("/inc/collapsible/orange-dot.svg");
+}
+
+[cbc="expanded"][active]:before {
+    background-image: url("/inc/collapsible/orange-minus-active.svg") !important;
+	}
+
+[cbc="collapsed"][active]:before {
+    background-image: url("/inc/collapsible/orange-plus-active.svg") !important;
+	}
+
+ul.collapsible li[active]:before {
+    margin-left: -20px;
+    background-image: url("/inc/collapsible/orange-dot-active.svg");
+}
+
+ul.collapsible {
+	padding-left : 25px ;
+	}
+
+ul.collapsible li {
+	list-style-type : none ;
+	}
+
+ul.collapsible ul {
+	overflow : hidden ;
+	transition : max-height 0.3s linear;
+	padding-left : 20px;
+	}
+
+ul.collapsible li:before {
+    margin-left: -20px;
+}

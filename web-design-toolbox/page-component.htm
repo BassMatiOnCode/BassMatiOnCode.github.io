@@ -1,0 +1,345 @@
+﻿<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="template-info" file-name="empty.htm"version="2021-08-04" editor-name="usp" />
+<meta name="author" content="usp" />
+<meta name="creation-date" content="2021-08-04" />
+<meta name="editor" content="usp" />
+<meta name="change-date" content="2021-08-16" />
+<meta name="version" content="2" />
+<meta name="categories" content="Web Design > Toolbox" />
+<meta name="tags" content="programming, web, design, toolbox, page styling, CSS" />
+<meta name="description" content="The page component consists of three elements: The page HTML template(s), the page CSS file and the page initialization script. If you want to modify the page layout, you must understand how the web page is constructed on the client side." />
+<title>Web Design Toolbox - Page Component</title>
+
+<link rel="stylesheet" href="/inc/page.css" />
+ 
+</head><body><div id="content"><h1>Page Component</h1>
+
+<p id="page-abstract"></p>
+
+<h2 cbc>Page Template and Visual Layout</h2><div>
+
+<p>The page template Figure 2 shows the containers and their arrangement on an average web page:</p>
+
+<figcaption>Figure 2: Structure of a standard web page</figcaption>
+<object data="./img/fig-002.svg" type="image/svg+xml" width="300"></object>
+
+<p>This layout can be found on many web pages and has proved good usability.</p>
+
+<p>By default, the site navigation panel at the left side is initially collapsed to zero width, and the user can expand it as required. The other containers stretch out horizontally to fill the entire horizontal space of the window. If the window size changes, the content flows up or down as required. This works well without changes on desktop monitors, tablets and smart phones.</p>
+
+<figcaption>Figure 4: Collapsed navigation panel</figcaption>
+<object data="./img/fig-004.svg" type="image/svg+xml" width="300"></object>
+
+<p>The panel overlaps the other container elements in the expanded state:</p>
+
+<figcaption>Figure 5: Expanded navigation panel</figcaption>
+<object data="./img/fig-005.svg" type="image/svg+xml" width="300"></object>
+
+<!-- Page Template and Visual Layout --></div>
+
+<h2 cbc>HTML Structure</h2><div>
+
+<p>Listing 1 outlines the related HTML page template. You should be able to easily identify the container elements described above:</p>
+
+<figcaption>Listing 1: Container structure of a standard page</figcaption>
+<pre>
+&lt;html&gt;
+&lt;head&gt;&hellip;&lt;/head&gt;
+&lt;body&gt;
+&lt;div id="page-header"&gt;&hellip;&lt;/div&gt;
+&lt;div id="toolbar"&gt;&hellip;&lt;/div&gt;
+&lt;div id="content"&gt;<hi>Your content goes here</hi>&lt;/div&gt;
+&lt;div id="page-footer"&gt;&hellip;&lt;/div&gt;
+&lt;div id="navigation-panel"&gt;&hellip;&lt;/div&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre>
+
+<p>It should be easy to relate the DIV container elements to their visual representation. However, the actual HTML code of the page template looks quite a bit different:</p>
+
+<figcaption>Listing 2: Structure of the page template</figcaption>
+<pre>
+&lt;html&gt;
+&lt;head&gt;&hellip;&lt;/head&gt;
+&lt;body&gt;
+&lt;div id="<hi>content</hi>"&gt;<cc>Your content goes here</cc>&lt;/div&gt;
+&lt;script type="module" src="/inc/<hi>page.js</hi>"&gt;&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre>
+
+<p>The BODY element holds the <tt>content</tt> container, but other containers are missing. Note the new script element at the bottom that links to a JavaScript file named <tt>page.js</tt>. This script <em>generates</em> the missing containers and and asynchronously loads the related content. To create a new web page, an author only has to instantiate a new file from a page template, tweak some META elements in the HEAD section, and write the page content.</p>
+
+<!-- HTML Structure --></div>
+
+<h2 cbc>CSS Code</h2><div>
+
+<p>The page template file links to the page stylesheet in the HEAD element:</p>
+
+<figcaption>Listing 3: Linking to the page stylesheet</figcaption><pre>
+&lt;head&gt;
+&lt;link rel="stylesheet" href="<hi>/inc/page.css</hi>" /&gt;
+&hellip;
+&lt;/head&gt;
+</pre>
+
+<p>This file defines the visual representation of a page.</p>
+
+<p class="note">NOTE<br/>If you have some special styles for only a few pages, don't add them to <tt>page.css</tt>. Instead, add local STYLE element to the document and create a new or override an existing style rule. Or better yet, create a .css file to define these special styles, then add an additional <tt>LINK</tt> element in the relevant HTML file(s). You can have multiple stylesheet files linked to a single document.</p>
+
+<p>Now let's have a look into the page stylesheet.</p>
+
+<figcaption>Listing 4: The default page styles</figcaption><pre>
+@import url("./colors.css");
+@import url("header-2.css");
+@import url("footer-2.css");
+@import url("toolbar/toolbar-2.css");
+@import url("./collapsible/collapsible-5.css");
+@import url("./navigation/navigation-3.css");
+</pre>
+
+<p>At the very top, a number of other stylesheets are imported. All color definitions are located in colors.css, so you have a single location to tweak all colors of the entire site. If you are looking for website "skins", this is the place (= file) to look for. Just exchange colors.css with a different version.</p>
+
+<p>Then you will certainly recognize the header, footer, toolbar, and navigation component stylesheets. And there are styles for collapsible content. </p>
+
+<p class="note">NOTE<br/>Currently there is no support for changing the skin on the client side. But it should not be difficult to create such a component.</p>
+
+<p>The next section imports some web fonts into the document. This is only required for fonts that are not standard operating system fonts on all target machines:</p>
+
+<figcaption>Listing 5: Font declarations</figcaption><pre>
+@font-face { 
+	font-family: arial narrow; 
+	font-style: normal; 
+	font-weight: 400;
+	src: 	local("Arial Narrow"), 
+		local("ArialNarrow-Regular"), 
+		url(/fnt/arial-narrow.woff) format("woff"), 
+		url(/fnt/arial-narrow.ttf) format("truetype");
+	}
+</pre>
+
+<p>I used Arial Narrow for headings and the Note font for the bass clef symbol in the SVG in the header panel. If no suitable fonts are on the target machine and if they are not supplied via <tt>font-face</tt> declaration, the browser on the client machine will try to find a suitable replacement. Usually this gives satisfying results. If not, use a font-face declaration.</p>
+
+<p class="note">NOTE<br/>The declared fonts must be available under the specified URL. You can use other servers, Google, or a CDN. In the examples above I have placed them on my own server in the <tt>/fnt/</tt> folder.</p>
+
+<p>The next instruction suppresses the toolbar on print media. The reason is that the toolbar would otherwise appear at the top of every page, which is usually not desired:</p>
+
+<figcaption>Listing 6: Toolbar suppression on print media</figcaption><pre>
+@media print {
+	#toolbar { display : none !important ; }
+	}
+</pre>
+
+<p>The following section defines styles for various type of boxes:</p>
+
+<figcaption>Listing 7: Simple styles for boxes</figcaption><pre>
+.box { border : 1px solid silver ; }
+.hscroll { overflow-x : auto; }
+.indent { margin-left : 20px ; }
+.no-borders { border-style : none ; }
+.imgbox {
+	border : 1px solid silver;
+	width : 100% ;
+	overflow : auto ;
+	}
+.note {
+	border-left: 5px dotted orange ;
+	margin-left: 20px;
+	padding-left: 10px ;
+	margin-right: 40px ;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	font-family: "Arial Narrow";
+	}
+</pre>
+
+<p>The <tt>.note</tt> class style should already be familiar: It defines the text note box style with the dotted left border.</p>
+
+<p>The next rules define the standard text font. It is inherited from the <tt>body</tt> to all child elements. The <tt>figcaption</tt> has a different font, smaller, more dense, and not so dark. Suits for image and listing captions.</p>
+
+<figcaption>Listing 8: Base text font definition</figcaption><pre>
+body {
+	font-family : "Segoe UI", Calibri, Verdana, Arial, "Palatino Linotype", Hevetica ;
+	margin : 0px 20px 40px 40px ;
+	line-height : 180% ;
+	font-size : 14px ;
+	padding-bottom : 60px ;
+	}
+	
+figcaption {
+	font-family : "Times New Roman";
+	font-style : italic ;
+	color: #A0A0A0 ;
+	margin-bottom : 5px;
+	margin-left : 10px ;
+	margin-top : 15px ;
+	margin-bottom : 0px ;
+	}
+</pre>
+
+<p>The next section defines styles for headings of varying degree:</p>
+
+<figcaption>Listing 9: Heading styles</figcaption><pre>
+h1, h2, h3, h4, h5, h6 { 
+	font-family : "Arial Narrow", "Times New Roman", "Sans-Serif";
+	line-height : 32px; 
+	font-weight : normal ;
+	margin-top : 40px;
+	margin-bottom : 10px;
+	}
+
+h1+h2, h2+h3, h3+h4, h4+h5 {
+	margin-top: 10px;
+	}
+
+h1 { font-size: 1.7em ; }
+h1.page-subtitle { font-size : 1.3em ; }
+h2 {	font-size : 1.5em ; }
+h3 { font-size : 1.3em ; }
+h4 {	font-size : 1.2em ; }
+h5 { 
+	font-size: 1.0em ;
+	font-style : italic ;
+	margin-bottom : 10px ;
+	}
+</pre>
+
+<figcaption>Listing 10: Preformatted text</figcaption><pre>
+pre { 
+	font-family: "Times New Roman", "Palatino Linotype", Serif, Consolas;
+	line-height: 160% ;
+	margin-left : 0px ; 
+	border-top : 1px solid silver ;
+	padding : 10px 10px 11px 10px ;
+	overflow: auto ;
+	}
+</pre>
+
+<p>Listing 9 shows the table styles:</p>
+
+<figcaption>Listing 11: Table styles</figcaption><pre>
+table.flat-borders {
+	border-collapse: collapse;
+	}
+
+table.flat-borders td, th {
+	border : solid 1px silver;
+	padding-left: 5px;
+	padding-right: 5px;
+	}
+	
+table.no-borders td, th {
+	border-style : none ;
+	}
+
+tr.column-headers {
+	font-style : italic ;
+	line-height : 15px ;
+	}
+
+tr.column-headers td, th {
+	padding-right : 10px ;
+	}
+</pre>
+
+<p>I have not included every detail here. Have a look into the source file for more information.</p>
+
+<!-- CSS Code --></div>
+
+<h2 cbc=>Script Code</h2><div>
+
+<p>The page component loads visual components, such as header, toolbar, footer and site navigation, as well as non-visual components, such as loader, collapsible content controller and numerator, and integrates them into the document.</p>
+
+<p>At the bottom of each page, a script element loads the module <tt>page.js</tt>. Here is where the magic hapens:</p>
+
+<figcaption>Listing 12: Loading the page component</figcaption><pre>
+&lt;html&gt;&hellip;
+&lt;body&gt;&hellip;
+&lt;script type="module" src="<hi>/inc/page.js</hi>" &gt;&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;</pre>
+
+<p>The page component is a JavaScript module and imports additional components:</p>
+
+<figcaption>Listing 13: Imported components</figcaption><pre>
+import * as toolbar from "/inc/toolbar/toolbar-2.js" ;
+import * as navigation from "/inc/navigation/navigation-3.js" ;
+import * as collapsible from "/inc/collapsible/collapsible-5.js" ;
+import * as header from "/inc/header-2.js" ;
+import * as footer from "/inc/footer-2.js" ;
+import * as loader from "/inc/loader-4.js" ;
+</pre>
+
+<p>It can be easily guessed from the name, that a component is responsible for one of the visible container elements: header, footer, toolbar and navigation panel. Their magic is ignited with the <tt>initPage</tt> function calls:</p>
+
+<figcaption>Listing 14: Page initialization</figcaption><pre>
+toolbar.initPage( );
+header.initPage( );
+footer.initPage( );
+navigation.initPage( );
+</pre>
+
+<p>The <tt>initPage</tt> functions typically create and configure standard HTML elements and their content. Some elements like the navigation panel are decorated with attributes for the loader (load-src="fragmentUrl.htm"). The loader looks for these attributes, retrieves the specified HTML fragments from the server and integrates them into the target container. For example, the navigation panel has a load instruction attribute that points to "/toc.htm", the table-of-contents file, but a page author can also make use of the loader to integrate his own document fragments.</p>
+
+<p class="note">NOTE<br/>The order of component.initPage calls is important. Toolbar and header components create container elements and insert them in front of the first BODY child element. Therefore the header must be created after the toolbar. Other components, such as footer and navigation, append elements at the end of the BODY.</p>
+
+<p>The loading is initiated by calling the <tt>loadFragments</tt> method of the loader. The function returns a JavaScript <tt>Promise</tt>. When the promise is fulfilled (i. e. when all fragments have been loaded), the <tt>then</tt> method is called:</p>
+
+<figcaption>Listing 15: Loading html fragments and finalization</figcaption><pre>
+loader.loadFragments( ).then (( ) =&gt; {
+	console.log( "Loading finished" );
+	collapsible.initPage( );
+	navigation.findCurrentDocument( );
+	toolbar.createButtons( navigation, collapsible );
+	footer.addLinks( navigation );
+	} ) ;
+</pre>
+
+<p>The <tt>then</tt> method expects a function expression as first argument, here implemented as arrow function. The code initializes collapsible blocks on the page, the table-of-contents entry in the navigation panel that is associated with the current document is identified, and some related links to other pages in the site are extracted from the table of contents. Then the toolbar component creates buttons, and finally the footer is completed with a list of site navigation links.</p>
+
+<!-- Script Code --></div>
+
+<h2 cbc>Page Abstract Generator</h2><div>
+
+<p>The page component script file contains an immediately called function expression, that creates a page abstract paragraph:</p>
+
+<figcaption>Listing 16: Creating the Page Abstract</figcaption><pre>
+( function initAbstract ( ) {
+    const abstract = document.getElementById( "page-abstract" );
+    if ( ! abstract ) return ;
+    const description = document.querySelector( "meta[name='description']" );
+    if ( ! description ) return ;
+    if ( ( abstract.innerText = "" +  description.getAttribute( "content" )).length === 0 ) abstract.remove( ); 
+    } )( ) ;
+</pre>
+
+<p>If you import the page module, this code runs automatically.</p>
+
+<p>The code looks for an element with a <tt>page-abstract</tt> attribute. If there is one, the content of the description META element is copied into the abstract element. This is a convenience method, because the description, which is usually read by search engines and used for indexing, does not have to be duplicated in the HTML code manually.</p>
+
+<!-- --></div>
+
+<h2 cbc>Customization</h2><div>
+
+<p>The page design is easily customizable. Just edit the component CSS files as required. Most likely you will add additional rules to <tt>page.css</tt> or tweak existing ones. For color changes, go to <tt>colors.css</tt>.</p>
+
+<p>To add additional components, &hellip;</p>
+
+<ol>
+<li>Add the component to the import list in <tt>page.js</tt>.</li>
+<li>Call the module's <tt>initPage</tt> function. Note that order of calls can matter!</li>
+<li>Add the module's post processing function calls to the <tt>loader.loadFragments( )</tt> fulfillment handler.</li>
+</ol>
+
+<p>To remove a component, &hellip;</p>
+
+<ol>
+<li>Remove the component import statement.</li>
+<li>Delete all module function calls.</li>
+</ol>
+
+<p>To change the visual appearance or behavior of components, refer to the specific component code files.</p>
+
+<!-- Customization --></div>
+
+</div><script type="module" src="/inc/page.js" ></script></body></html>

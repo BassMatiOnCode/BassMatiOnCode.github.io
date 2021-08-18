@@ -1,0 +1,30 @@
+<htm><head>
+<style>
+ul {
+	list-style-type : none ;
+	counter-reset : counter ;
+	}
+li::before {
+	counter-increment : counter ;
+	content : counters( counter, "." ) " " ;
+	}
+</style>
+</head><body>
+<ul>
+<li>item</li>
+<li>item
+	<ul>
+	<li>item</li>
+	<li>item
+		<ul>
+		<li>item</li>
+		<li>item</li>
+		<li>item</li>
+		</ul></li>
+	<li>item</li>
+	</ul></li>
+<li>item</li>
+<li>item</li>
+</ul>
+
+</body></htm>

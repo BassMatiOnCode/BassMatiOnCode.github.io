@@ -1,0 +1,59 @@
+/* toolbar-2.css  2021-08-01  usp */
+
+.toolbar {
+	display : block ;
+	position : sticky;
+	top : 0px ;
+	right : 0px ;
+	margin-left : -40px ;
+	padding-left : 40px ;
+	margin-right : -20px ;
+	padding-top : 5px ;
+	height : auto ;
+	border-top : 1px none gray;
+	border-bottom : 1px solid darkorange;
+	background-color : white ;
+	}
+
+.toolbutton {
+	display : inline-block ;
+	/* Make sure width and height matches attributes in toolbar.js:createSVG, minus 1! */
+	width : 32px ;
+	height : 32px ;
+	margin-right : 15px ;
+	border : 1px solid transparent;
+	border-radius : 8px;
+	background-repeat : no-repeat ;
+	background-position : center, center ;
+	}
+
+.toolbutton:hover {
+	stroke : darkorange ;
+	}
+
+.toolbutton:hover svg {
+	stroke : darkorange ;
+	}
+
+.toolbar svg  { 
+	fill : white; 
+	stroke : gray;
+	stroke-linecap : round; 
+	stroke-linejoin : round; 
+	stroke-width : 8px; 
+	}
+
+
+
+.toolbar svg .expand {
+	stroke : transparent ;
+	}
+
+.toolbar svg[expand] .expand {
+	stroke : gray;
+	}
+
+.toolbar svg[expand]:hover .expand {
+	stroke : darkorange;
+	}
+	
