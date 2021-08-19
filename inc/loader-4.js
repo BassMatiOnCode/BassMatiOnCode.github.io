@@ -17,7 +17,12 @@ export function loadFragments ( container = document.body ) {
 		console.log( "Loading: ", url );
 		promises.push( fetch( url )
 			.then ( response => response.ok ? response.text( ) : "Not found: " + url )
-			.then ( text => e.innerHTML = text )
+			.then (( text ) => e.innerHTML = text )
+			.then (( ) => { if ( e.id !== "navigation-panel" ) {
+				// Remove auxiliary parent nodes for partial website projects
+				const sroot = e.querySelector( "[section-root]" );
+				if ( sroot ) e.replaceChildren( ...sroot.children );
+				} } )
 			.then (( ) => rebaseRelativeUrls( e, stripFilename( url )))
 			.then (( ) => loadFragments( e ))
 			.catch( reason => console.error( "Request failed: ", reason )));

@@ -1,22 +1,55 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-US"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="template-info" file-name="empty.htm"version="2021-08-04" editor-name="usp" />
 <meta name="author" content="usp" />
-<meta name="creation-date" content="2021-08-17" />
+<meta name="creation-date" content="2021-06-17" />
 <meta name="editor" content="usp" />
-<meta name="change-date" content="2021-08-17" />
+<meta name="change-date" content="2021-06-17" />
 <meta name="version" content="1" />
-<meta name="categories" content="Web Development > SVG" />
-<meta name="tags" content="web, development, svg, section" />
-<meta name="description" content="" />
+<meta name="categories" content="Programming > Web Technology > SVG" />
+<meta name="tags" content="Programming, Deno, TypeScript" />
+<meta name="description" content="SVG by Hand" />
 <title></title>
 
 <link rel="stylesheet" href="/inc/page.css" />
  
-</head><body><div id="content"><h1>SVG</h1>
+</head><body><div id="content"><h1></h1>
 
 <p id="page-abstract"></p>
+
+<p>Examples</p>
+<img src="circle.svg" style="border:1px solid black" />
+<img src="rectangle.svg" style="border:1px solid black" />
+<img src="text.svg" style="border:1px solid black" />
+<img src="circle-of-5th.svg" style="border:1px solid black" width="150px" />
+<img src="scale-circle.svg" style="border:1px solid black" width="150px" />
+<img src="scale-circle-2.svg" style="border:1px solid black" width="150px" />
+
+
+<h2 cbc>Links</h2><div>
+
+<dl>
+<dt><a href="https://www.networkworld.com/article/2770992/creating-images-with-a-text-editor.html">Creating images with a text editor</a> - Networkworld</dt>
+<dt><a href="https://developer.mozilla.org/en-US/docs/Web/SVG">Scalable Vector Graphics</a> - MDN</dt>
+<dd><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial">SVG Tutorial</a></dd>
+</dl>
+</div>
+
+<script src="/inc/page.js" ></script>
+
+<script>
+let a0 = 15;
+let r0 = 28;
+let r1 = 48;
+let x0 = 50;
+let y0 = 50;
+for ( let i = 0 ; i < 12 ; i++ ) {
+	const a = Math.PI/180*(a0 + i * 30);
+	console.log( `x1=${(x0+r0*Math.sin(a)).toLocaleString(undefined,{minimumFractionDigits:2})} y1=${(y0-r0*Math.cos(a)).toLocaleString(undefined,{minimumFractionDigits:2})} x2=${(x0+r1*Math.sin(a)).toLocaleString(undefined,{maximumFractionDigits:2})} y2=${(y0-r1*Math.cos(a)).toLocaleString(undefined,{minimumFractionDigits:2})}` );
+	}
+
+</script>
 
 </div><script type="module" src="/inc/page.js" ></script></body></html>

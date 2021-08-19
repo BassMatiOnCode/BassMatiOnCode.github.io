@@ -101,10 +101,11 @@ figcaption {
 	}
 
 figcaption + * {
-	margin-top : 5px ;
+	margin-top : 10px ;
+	margin-left : 10px ;
 	}
 
-figcaption+svg {
+figcaption+pre {
 	margin-top : 0px ;
 	}
 
@@ -146,7 +147,6 @@ pre {
 	font-family: "Times New Roman", "Palatino Linotype", Serif, Consolas;
 	line-height: 160% ;
 	margin-left : 0px ; 
-	border-top : 1px none silver ;
 	padding : 10px 10px 11px 10px ;
 	overflow: auto ;
 	}
