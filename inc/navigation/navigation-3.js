@@ -26,7 +26,7 @@ function panelClickHandler ( evt ) {
 
 export function navigateButtonClickHandler ( evt ) {
 	if ( navpanel.style.maxWidth === "0px" ) 
-		navpanel.style.maxWidth = Math.min( navpanel.scrollWidth + 10, document.body.clientWidth ) + "px" ;
+		navpanel.style.maxWidth = Math.min( navpanel.firstElementChild.scrollWidth, document.body.clientWidth ) + "px" ;
 	else {
 		if ( navpanel.style.maxWidth === "none" ) navpanel.style.maxWidth = document.body.clientWidth + "px" ;
 		window.requestAnimationFrame( ( ) => navpanel.style.maxWidth = "0px" ) ;

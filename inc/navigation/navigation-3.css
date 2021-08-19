@@ -1,4 +1,4 @@
-/* navigation-panel-1.css  2021-08-16  usp */
+/* navigation-panel-1.css  2021-08-19  usp */
 
 #navigation-panel {
 	display : block ;
@@ -12,6 +12,11 @@
 	background-color : white;
 	border-right : 3px solid orange;
 	transition : max-width 0.4s linear ;
+	}
+
+#navigation-panel>ul {
+	display: inline-block;
+	padding-right : 15px ;
 	}
 
 #navigation-panel a { 
