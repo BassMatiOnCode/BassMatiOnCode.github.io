@@ -15,7 +15,14 @@
 	background-color : white ;
 	}
 
-.toolbutton {
+svg.tool.button g { stroke : gray }
+svg.tool.button:hover g { stroke : darkorange }
+.tool.button + .tool.button { margin-left : 10px }
+svg.tool.button g #vertical { stroke : transparent }
+svg.tool.button[expand] g #vertical { stroke : gray }
+svg.tool.button[expand]:hover g #vertical { stroke : darkorange }
+
+.xtool.button {
 	display : inline-block ;
 	/* Make sure width and height matches attributes in toolbar.js:createSVG, minus 1! */
 	width : 32px ;
@@ -25,35 +32,26 @@
 	border-radius : 8px;
 	background-repeat : no-repeat ;
 	background-position : center, center ;
+	stroke : gray ;
 	}
 
-.toolbutton:hover {
+.xtool.button:hover {
 	stroke : darkorange ;
 	}
 
-.toolbutton:hover svg {
+.xtool.button:hover svg {
 	stroke : darkorange ;
 	}
 
-.toolbar svg  { 
-	fill : white; 
-	stroke : gray;
-	stroke-linecap : round; 
-	stroke-linejoin : round; 
-	stroke-width : 8px; 
-	}
-
-
-
-.toolbar svg .expand {
+.xtoolbar svg #vertical {
 	stroke : transparent ;
 	}
 
-.toolbar svg[expand] .expand {
+.xtoolbar svg[expand] #vertical {
 	stroke : gray;
 	}
 
-.toolbar svg[expand]:hover .expand {
+.xtoolbar svg[expand]:hover .expand {
 	stroke : darkorange;
 	}
 	
