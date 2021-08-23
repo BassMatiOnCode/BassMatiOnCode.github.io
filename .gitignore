@@ -1,7 +1,4 @@
 .vs/
 .git/
-web-development/html/*
-web-development/css/*
-web-development/svg/*
-web-development/javascript/*
-web-design-toolbox/navigation-3/inc/*
+/web-design-toolbox/
+/web-technologies/

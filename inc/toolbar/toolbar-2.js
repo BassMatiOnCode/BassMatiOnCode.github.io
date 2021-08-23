@@ -1,16 +1,18 @@
 //
-// toolbar-2.js  2021-08-20  usp
+// toolbar-2.js  2021-08-22  usp
 //
 
 let toolbar ;
 
-export function initPage ( ) {
+( function initPage ( ) {
 	/// Creates the main toolbar.
-	toolbar = document.createElement( "DIV" );
-	toolbar.className = "toolbar" ;
-	toolbar.id = "main-menu" ;
-	document.body.insertBefore( toolbar, document.body.firstChild );
-	}
+	toolbar = document.getElementById( "main-toolbar" );
+	if ( ! toolbar ) {
+		toolbar = document.createElement( "DIV" );
+		toolbar.id = "main-toolbar" ;
+		document.body.insertBefore( toolbar, document.body.firstChild );
+		}
+	} ) ( ) ;
 
 export function createButtons( navigation, collapsible ) {
 	/// Creates the toolbar buttons.
@@ -69,8 +71,8 @@ function createSVGElement( drawingInstructions ) {
 	e.setAttribute( "version", "1.1" );
 	e.setAttribute( "class", "tool button" );
 	e.setAttribute( "viewBox", "-50 -50 100 100" );
-	e.setAttribute( "width", "33" );
-	e.setAttribute( "height", "33" );
+	e.setAttribute( "width", "23" );
+	e.setAttribute( "height", "23" );
 	const g = document.createElementNS( svgNameSpace, "g" );
 	g.setAttribute( "stroke", "darkorange" );
 	g.setAttribute( "stroke-width", "6" );

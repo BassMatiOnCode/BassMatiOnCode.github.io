@@ -3,9 +3,9 @@
 //
 
 import * as toolbar from "/inc/toolbar/toolbar-2.js" ;
+import * as header from "/inc/header-2.js" ;
 import * as navigation from "/inc/navigation/navigation-3.js" ;
 import * as collapsible from "/inc/collapsible/collapsible-5.js" ;
-import * as header from "/inc/header-2.js" ;
 import * as footer from "/inc/footer-2.js" ;
 import * as loader from "/inc/loader-4.js" ;
 
@@ -18,8 +18,8 @@ import * as loader from "/inc/loader-4.js" ;
 	if ( ( abstract.innerText = "" +  description.getAttribute( "content" )).length === 0 ) abstract.remove( ); 
 	} )( ) ;
 
-toolbar.initPage( );
-header.initPage( );
+// toolbar.initPage( );
+// header.initPage( );
 footer.initPage( );
 navigation.initPage( );
 loader.loadFragments( ).then (( ) => {

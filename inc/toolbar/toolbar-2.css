@@ -1,6 +1,6 @@
 /* toolbar-2.css  2021-08-01  usp */
 
-.toolbar {
+#main-toolbar {
 	display : block ;
 	position : sticky;
 	top : 0px ;
@@ -9,7 +9,7 @@
 	padding-left : 40px ;
 	margin-right : -20px ;
 	padding-top : 5px ;
-	height : auto ;
+	height : 30px ;
 	border-top : 1px none gray;
 	border-bottom : 1px solid darkorange;
 	background-color : white ;
