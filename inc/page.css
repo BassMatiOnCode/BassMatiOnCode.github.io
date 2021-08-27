@@ -1,6 +1,6 @@
 /*
  *	page.css
- *	2021-08-16 usp
+ *	2021-08-25 usp
  */
 
 @import url( colors.css );
@@ -100,13 +100,21 @@ figcaption {
 	border-bottom : 1px solid silver;
 	}
 
-figcaption + * {
+xfigcaption + * {
 	margin-top : 10px ;
 	margin-left : 10px ;
 	}
 
 figcaption+pre {
 	margin-top : 0px ;
+	margin-bottom : 40px ;
+	}
+
+figcaption+iframe {
+	margin-top : 0px ;
+	margin-bottom : 20px ;
+	border-style : none ;
+	border-top-style : solid ;
 	}
 
 h1, h2, h3, h4, h5, h6 { 

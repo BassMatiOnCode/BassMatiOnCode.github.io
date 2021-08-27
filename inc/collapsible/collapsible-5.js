@@ -1,5 +1,5 @@
 //
-// collapsible-block-5.js  2021-08-07  usp
+// collapsible-block-5.js  2021-08-27  usp
 //
 
 export function initPage ( container ) {
@@ -23,9 +23,11 @@ export function initPage ( container ) {
 		}
 	// Prepare collapsible blocks and their controllers
 	let controllers = container.querySelectorAll( "[cbc]" );
+	const defaultState = new RegExp( "collapse=none" )
+		.test( document.location.search ) ? "expanded" : "collapsed" ;
 	for ( let i = 0 ; i < controllers.length ; i ++ ) {
 		let controller = controllers[ i ];
-		if ( controller.getAttribute( "cbc" ) === "" ) controller.setAttribute( "cbc", "collapsed" );
+		if ( controller.getAttribute( "cbc" ) === "" ) controller.setAttribute( "cbc", defaultState );
 		else if ( controller.getAttribute( "cbc" ) === "static" ) continue;
 		// Set a reference from controller to collapsible block if not done above.
 		controller.synesis = controller.synesis || { } ;

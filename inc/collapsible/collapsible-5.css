@@ -1,5 +1,5 @@
 /* collapsible-block-5.css */
-/* 2021-08-02 usp */
+/* 2021-08-26 usp */
 
 [cbc] {
 	transition : margin-top 0.9s linear;
@@ -27,6 +27,12 @@
 [cbc="collapsed"]:before {
     background-image: url("/inc/collapsible/orange-plus.svg") !important;
 	}
+
+[cbc="collapsed"]+div>h2 { margin-top : 0px }
+[cbc="collapsed"]+div>h3 { margin-top : 0px }
+[cbc="collapsed"]+div>h4 { margin-top : 0px }
+[cbc="collapsed"]+div>h5 { margin-top : 0px }
+[cbc="collapsed"]+div>h6 { margin-top : 0px }
 
 ul.collapsible li:before {
     margin-left: -20px;
