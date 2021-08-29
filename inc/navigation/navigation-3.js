@@ -45,7 +45,7 @@ export function findCurrentDocument( ) {
 	const links = navpanel.getElementsByTagName( "A" );
 	for ( let i = 0 ; i < links.length ; i ++ ) {
 		const link = links[ i ];
-		if ( link.href === document.location.href ) {
+		if ( link.pathname === document.location.pathname ) {
 			if ( i > 0 ) previous = links[ i - 1 ].href;
 			if ( i < links.length - 1 ) next = links[ i + 1 ].href;
 			let e = link.parentNode.parentNode.firstElementChild.querySelector( "LI>A" );
