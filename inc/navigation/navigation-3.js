@@ -1,5 +1,5 @@
 //
-// navigation-panel.js  2021-08-03  usp
+// navigation-panel.js  2021-08-29  usp
 //
 
 	// Store a reference to the frequently needed navigation panel
