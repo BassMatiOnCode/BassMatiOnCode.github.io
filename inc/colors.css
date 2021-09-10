@@ -1,11 +1,13 @@
 /*
  *		colors.css
- *		2020-11-16 usp
+ *		2021-09-09 usp
  */
 
 .rule { border-color: #6060A0;}
 #navigation-panel a:visited { color : purple; }
 #navigation-panel a { color: inherit; }
+a { color : #6060A0 }
+a:visited { color : #ab6eb8 }
 body { color : #333; }
 cc { color : #4b4; }
 figcaption+iframe { background-color : #F8F0C0; }
