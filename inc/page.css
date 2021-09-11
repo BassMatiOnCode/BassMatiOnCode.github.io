@@ -113,6 +113,11 @@ figcaption+iframe {
 	border-top-style : solid ;
 	}
 
+figcaption+object {
+	margin-top : 10px ;
+	margin-left : 10px ;
+	}
+
 figcaption>a {
 	text-decoration : none ;
 	}

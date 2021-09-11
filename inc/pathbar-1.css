@@ -1,9 +1,9 @@
 /* pathbar-1.css  usp  2021-09-10 */
 
 div#path-bar {
-	position : absolute ;
-	left : 0px ;
-	right : 0px ;
+	position : relative ;
+	margin-left : -40px ;
+	margin-right : -20px ;
 	padding-left : 10px ;
 	padding-right : 10px ;
 	line-height : 32px;
