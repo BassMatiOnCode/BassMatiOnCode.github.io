@@ -1,13 +1,12 @@
 /*
  *	page.css
- *	2021-08-30 usp
+ *	2021-08-25 usp
  */
 
 @import url( colors.css );
 @import url( header-2.css );
 @import url( footer-2.css );
 @import url( toolbar/toolbar-2.css );
-@import url( pathbar-1.css );
 @import url( collapsible/collapsible-5.css );
 @import url( navigation/navigation-3.css );
 @import url( counter.css );
@@ -101,9 +100,14 @@ figcaption {
 	border-bottom : 1px solid silver;
 	}
 
+xfigcaption + * {
+	margin-top : 10px ;
+	margin-left : 10px ;
+	}
+
 figcaption+pre {
 	margin-top : 0px ;
-	margin-bottom : 20px ;
+	margin-bottom : 40px ;
 	}
 
 figcaption+iframe {
@@ -111,19 +115,6 @@ figcaption+iframe {
 	margin-bottom : 20px ;
 	border-style : none ;
 	border-top-style : solid ;
-	}
-
-figcaption+object {
-	margin-top : 10px ;
-	margin-left : 10px ;
-	}
-
-figcaption>a {
-	text-decoration : none ;
-	}
-
-figcaption>a:hover {
-	text-decoration : underline ;
 	}
 
 h1, h2, h3, h4, h5, h6 { 
