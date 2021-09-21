@@ -28,11 +28,7 @@
     background-image: url("/inc/collapsible/orange-plus.svg") !important;
 	}
 
-[cbc="collapsed"]+div>h2 { margin-top : 0px }
-[cbc="collapsed"]+div>h3 { margin-top : 0px }
-[cbc="collapsed"]+div>h4 { margin-top : 0px }
-[cbc="collapsed"]+div>h5 { margin-top : 0px }
-[cbc="collapsed"]+div>h6 { margin-top : 0px }
+[cbc]+div>*:first-child { margin-top : 0px }
 
 ul.collapsible li:before {
     margin-left: -20px;

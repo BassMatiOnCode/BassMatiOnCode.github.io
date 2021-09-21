@@ -14,7 +14,7 @@ export function initPage ( container ) {
 			let block = blocks[ j ];
 			// Set a reference from controller to associated collapsible block.
 			let controller = block.parentNode;
-			if ( ! controller.hasAttribute( "cbc" )) controller.setAttribute( "cbc", "collapsed" );
+			if ( ! controller.hasAttribute( "cbc" )) controller.setAttribute( "cbc", "expanded" );
 			if ( ! controller.synesis ) controller.synesis = { } ;
 			controller.synesis.collapsibleBlock = block ;
 			}
@@ -23,8 +23,8 @@ export function initPage ( container ) {
 		}
 	// Prepare collapsible blocks and their controllers
 	let controllers = container.querySelectorAll( "[cbc]" );
-	const defaultState = new RegExp( "collapse=none" )
-		.test( document.location.search ) ? "expanded" : "collapsed" ;
+	const defaultState = new RegExp( "collapse=all" )
+		.test( document.location.search ) ? "collapsed" : "expanded" ;
 	for ( let i = 0 ; i < controllers.length ; i ++ ) {
 		let controller = controllers[ i ];
 		if ( controller.getAttribute( "cbc" ) === "" ) controller.setAttribute( "cbc", defaultState );
