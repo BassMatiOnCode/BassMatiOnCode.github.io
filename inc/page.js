@@ -1,5 +1,5 @@
 // 
-//	page.js  2021-08-16  usp
+//	page.js  2021-09-22  usp
 //
 
 import * as toolbar from "/inc/toolbar/toolbar-2.js" ;
@@ -15,7 +15,7 @@ import * as loader from "/inc/loader-4.js" ;
 	const description = document.querySelector( "meta[name='description']" );
 	if ( ! description ) return ;
 	// eslint-disable-next-line no-cond-assign
-	if ( ( abstract.innerText = "" +  description.getAttribute( "content" )).length === 0 ) abstract.remove( ); 
+	if ( ( abstract.innerHTML = "" +  description.getAttribute( "content" )).length === 0 ) abstract.remove( ); 
 	} )( ) ;
 
 // toolbar.initPage( );

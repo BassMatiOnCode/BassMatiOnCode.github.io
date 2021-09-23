@@ -1,7 +1,8 @@
 .vs/
 .git/
-inc/music/
-inc/svg-1.js
-web-design-toolbox/
-web-technologies/
+/inc/music/
+/inc/svg-1.js
+/web-design-toolbox
+/web-technologies
+/music-toolbox
 
