@@ -1,6 +1,6 @@
-/*
+﻿/*
  *	page.css
- *	2021-08-25 usp
+ *	2021-10-21 usp
  */
 
 @import url( colors.css );
@@ -47,6 +47,11 @@
 	margin-left : 20px ;
 	}
 
+.mono {
+	font-family: "Courier New", Courier, monospace ;
+	font-size: 80% ;
+	}
+	
 .no-borders {
 	border-style : none ;
 	}
@@ -64,6 +69,10 @@
 .spaced-items li { 
 	margin-top: 20px;
 	margin-bottom: 20px; 
+	}
+
+#content {
+	overflow : visible ;
 	}
 
 body {

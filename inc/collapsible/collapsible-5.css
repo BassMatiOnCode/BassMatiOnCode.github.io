@@ -1,5 +1,5 @@
-/* collapsible-block-5.css */
-/* 2021-08-26 usp */
+﻿/* collapsible-block-5.css */
+/* 2021-10-21 usp */
 
 [cbc] {
 	transition : margin-top 0.9s linear;
@@ -28,6 +28,8 @@
     background-image: url("/inc/collapsible/orange-plus.svg") !important;
 	}
 
+[cbc]+div { overflow-x : visible }
+
 [cbc]+div>*:first-child { margin-top : 0px }
 
 ul.collapsible li:before {
@@ -41,6 +43,10 @@ ul.collapsible li:before {
 
 [cbc="collapsed"][active]:before {
     background-image: url("/inc/collapsible/orange-plus-active.svg") !important;
+	}
+
+h2[cbc], h3[cbc], h4[cbc], h5[cbc] {
+	margin-left : -15px ;
 	}
 
 ul.collapsible li[active]:before {
