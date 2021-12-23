@@ -1,4 +1,4 @@
-//
+﻿//
 // toolbar-2.js  2021-08-22  usp
 //
 
@@ -24,7 +24,7 @@ export function createButtons( navigation, collapsible ) {
 	createButton( "a", "navigate-previous", "svg", circledArrowLeft, navigation.previous );
 	createButton( "a", "navigate-next", "svg", circledArrowRight, navigation.next );
 	createButton( "a", "navigate-last", "svg", circledArrowLast, navigation.last );
-	if ( document.querySelector( "body > #content > [cbc]" )) {
+	if ( document.querySelector( "body > #content [cbc]" )) {
 		button = createButton( "svg", "collapse-toggle", "svg", circledPlusMinus, collapsible.toggleAllBlocks );
 		button.setAttribute( "expand", "" );
 		}

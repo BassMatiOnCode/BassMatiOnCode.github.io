@@ -45,9 +45,10 @@ ul.collapsible li:before {
     background-image: url("/inc/collapsible/orange-plus-active.svg") !important;
 	}
 
-h2[cbc], h3[cbc], h4[cbc], h5[cbc] {
+h2[cbc], h3[cbc], h4[cbc], h5[cbc], dt[cbc] {
 	margin-left : -15px ;
 	}
+
 
 ul.collapsible li[active]:before {
     margin-left: -20px;
@@ -64,10 +65,23 @@ ul.collapsible li {
 
 ul.collapsible ul {
 	overflow : hidden ;
-	transition : max-height 0.3s linear;
+	transition : max-height 0.9s linear;
 	padding-left : 20px;
 	}
 
 ul.collapsible li:before {
     margin-left: -20px;
 }
+
+dl.description-list>dt[cbc] {
+	margin-left : -30px ;
+	}
+
+dl.description-list dd {
+	transition : margin-top 0.9s linear;
+	}
+
+dl.description-list>dt[cbc="collapsed"]+dd {
+	margin-top : 0px;
+	margin-bottom : 0px;
+	}

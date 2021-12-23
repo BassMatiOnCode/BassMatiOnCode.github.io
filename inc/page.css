@@ -1,6 +1,6 @@
 ﻿/*
  *	page.css
- *	2021-10-21 usp
+ *	2021-12-23 usp
  */
 
 @import url( colors.css );
@@ -56,6 +56,11 @@
 	border-style : none ;
 	}
 
+.no-bullets {
+	list-style-type : none ;
+	padding-left : 0 ;
+	}
+
 .note {
 	border-left: 5px dotted orange ;
 	margin-left: 20px;
@@ -92,10 +97,10 @@ dd {
 	}
 
 dl.description-list dd {
-	margin-top : 20px ;
-	margin-bottom : 20px ;
+	margin-top : 10px ;
+	margin-bottom : 10px ;
 	}
-
+	
 figcaption {
 	font-family : "Times New Roman";
 	font-style : italic ;
