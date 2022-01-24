@@ -1,4 +1,4 @@
-//
+﻿//
 // navigation-panel.js  2021-08-03  usp
 //
 

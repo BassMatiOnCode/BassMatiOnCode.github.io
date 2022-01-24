@@ -1,4 +1,4 @@
-//
+﻿//
 // loader-4.js  2021-08-02  usp
 // usage: loader.loadFragments( ).then(( ) => postProcess( ));
 //

@@ -1,4 +1,4 @@
-﻿// 
+// 
 //	page.js  2021-10-21  usp
 //
 
@@ -27,6 +27,6 @@ loader.loadFragments( ).then (( ) => {
 	collapsible.initPage( );
 	navigation.findCurrentDocument( );
 	toolbar.createButtons( navigation, collapsible );
-	footer.addLinks( navigation );
+	footer.addNavigationLinks( navigation );
 	} ) ;
 

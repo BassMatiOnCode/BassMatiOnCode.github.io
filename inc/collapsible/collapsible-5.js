@@ -1,4 +1,4 @@
-//
+﻿//
 // collapsible-block-5.js  2021-08-27  usp
 //
 

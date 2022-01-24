@@ -1,13 +1,11 @@
-/* toolbar-2.css  2021-08-01  usp */
+﻿/* toolbar-2.css  2022-01-18  usp */
 
 #main-toolbar {
 	display : block ;
 	position : sticky;
 	top : 0px ;
 	right : 0px ;
-	margin-left : -40px ;
-	padding-left : 40px ;
-	margin-right : -20px ;
+	padding-left : 20px ;
 	padding-top : 5px ;
 	height : 30px ;
 	border-top : 1px none gray;

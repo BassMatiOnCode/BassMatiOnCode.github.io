@@ -2,22 +2,28 @@
 /* 2021-10-21 usp */
 
 [cbc] {
-	transition : margin-top 0.9s linear;
+	margin-left : -30px ;
+	transition : margin-top 0.6s linear;
+	}
+
+[cbc]+div {
+	margin-left: -30px ;
+	padding-left : 30px ;
 	}
 
 [cbc]:before {
-    content: "";
-    display: inline-block;
-    height: 0.8em;
-    width: 30px;
-    background-size: contain;
-    background-repeat: no-repeat;
+    content : ""  ;
+    display : inline-block ;
+    height : 0.8em ;
+    width : 30px ;
+    background-size : contain ;
+    background-repeat : no-repeat ;
 	background-position-x : center ;
-	margin-bottom: -0.2ex ;
+	margin-bottom : -0.2ex ;
 	}
 
 [cbc="expanded"]:before {
-    background-image: url("/inc/collapsible/orange-minus.svg") !important;
+    background-image: url("orange-minus.svg") !important;
 	}
 
 [cbc="collapsed"] + * + [cbc] {
@@ -25,30 +31,23 @@
 	}
 
 [cbc="collapsed"]:before {
-    background-image: url("/inc/collapsible/orange-plus.svg") !important;
+    background-image : url("orange-plus.svg") !important ;
 	}
 
-[cbc]+div { overflow-x : visible }
-
 [cbc]+div>*:first-child { margin-top : 0px }
+
+[cbc="expanded"][active]:before {
+    background-image : url("/inc/collapsible/orange-minus-active.svg") !important ;
+	}
+
+[cbc="collapsed"][active]:before {
+    background-image : url("/inc/collapsible/orange-plus-active.svg") !important ;
+	}
 
 ul.collapsible li:before {
     margin-left: -20px;
     background-image: url("/inc/collapsible/orange-dot.svg");
 }
-
-[cbc="expanded"][active]:before {
-    background-image: url("/inc/collapsible/orange-minus-active.svg") !important;
-	}
-
-[cbc="collapsed"][active]:before {
-    background-image: url("/inc/collapsible/orange-plus-active.svg") !important;
-	}
-
-h2[cbc], h3[cbc], h4[cbc], h5[cbc], dt[cbc] {
-	margin-left : -15px ;
-	}
-
 
 ul.collapsible li[active]:before {
     margin-left: -20px;

@@ -1,4 +1,4 @@
-﻿//
+//
 // footer-2.js  2021-08-03  usp
 //
 
@@ -21,14 +21,14 @@ export function initPage ( ) {
 		const footers = document.getElementsByTagName( "FOOTER" );
 		if ( footers ) footer = footers[ footers.length - 1 ];
 		}
-	if ( ! footer ) document.createElement( "DIV" );
+	if ( ! footer ) footer = document.createElement( "DIV" );
 	footer.id = "page-footer" ;
-	footer.innerHTML = `Created ${creationDate} by ${pageCreator} &bull;  Edited ${changeDate} by ${pageEditor} &bull; Version8 ${pageVersion}<br/><a href=\"/index.htm\">Home</a> | ` ;
+	footer.innerHTML = `Created ${creationDate} by ${pageCreator} &bull;  Edited ${changeDate} by ${pageEditor} &bull; Version ${pageVersion}<br/><a href=\"/index.htm\">Home</a> | ` ;
 	document.body.appendChild( footer );
 	}
 
 export function addNavigationLinks( navigation ) {
-	let s = "" ;
+	let s = "" ; 
 	if ( navigation ) {
 		if ( navigation.parent !== "#" ) s += `<a href="${navigation.parent}">Up</a> | `
 		if ( navigation.first !== "#" ) s += `<a href="${navigation.first}">First</a> | `

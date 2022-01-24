@@ -12,13 +12,20 @@
 @import url( counter.css );
 
 @font-face { 
-	font-family: arial narrow; 
+	font-family: "arial narrow"; 
 	font-style: normal; 
 	font-weight: 400;
 	src: 	local("Arial Narrow"), 
 		local("ArialNarrow-Regular"), 
 		url(fnt/arial-narrow.woff) format("woff"), 
 		url(fnt/arial-narrow.ttf) format("truetype");
+	}
+@font-face { 
+	font-family: "droid sans mono"; 
+	font-style: normal; 
+	font-weight: 400;
+	src: 	local("droid sans mono"), 
+		url(fnt/DroidSansMono.ttf) format("truetype");
 	}
 
 @media print {
@@ -80,12 +87,17 @@
 	overflow : visible ;
 	}
 
+#page-content {
+	padding-left : 60px ;
+	padding-right : 20px ;
+	}
+
 body {
 	font-family : "Segoe UI", Calibri, Verdana, Arial, "Palatino Linotype", Hevetica ;
-	margin : 0px 20px 40px 40px ;
+	margin : 0 ;
 	line-height : 180% ;
 	font-size : 14px ;
-	padding-bottom : 60px ;
+	padding-bottom : 20px ;
 	}
 	
 caption {
@@ -108,15 +120,10 @@ figcaption {
 	margin-bottom : 5px;
 	margin-left : 0px ;
 	margin-top : 15px ;
-	margin-bottom : 0px ;
+	margin-bottom : 10px ;
 	padding-left : 10px ;
 	padding-bottom : 5px ;
 	border-bottom : 1px solid silver;
-	}
-
-xfigcaption + * {
-	margin-top : 10px ;
-	margin-left : 10px ;
 	}
 
 figcaption+pre {
@@ -166,7 +173,8 @@ li p {
 	}
 
 pre { 
-	font-family: "Times New Roman", "Palatino Linotype", Serif, Consolas;
+	font-family: "Droid Sans Mono", "Times New Roman", "Palatino Linotype", Serif, Consolas;
+	font-size: 75%;
 	line-height: 160% ;
 	margin-left : 0px ; 
 	padding : 10px 10px 11px 10px ;

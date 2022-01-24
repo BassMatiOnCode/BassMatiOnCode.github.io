@@ -1,25 +1,9 @@
-/* headers-2.css  2021-07-30  usp */
+﻿/* headers-2.css  2022-01-23  usp */
 
-@font-face { 
-	font-family: Notes; 
-	src: 	local("Notes"), 
-		url(/inc/fnt/notes.ttf) format("truetype");
+#page-header {
+	height : 65px ;
+	background-image : url( /logo.svg ) ;
+	background-position: 10px 5px ;
+	background-repeat : no-repeat ;
 	}
 
-div#page-header {
-	margin-left : -40px ;
-	margin-right : -20px ;
-	height : 80px ;
-	background-color : #204080;
-	}
-
-div#page-header svg { fill: #FFFFFF; }
-div#page-header svg line { stroke: #FFFFFF; stroke-width: 0.8px; }
-div#page-header svg .logotext { text-anchor: end; }
-div#page-header svg .logotext-1 { font-family: "georgia"; font-size: 21px; }
-div#page-header svg .logotext-2 { font-family: "Bookman Old Style"; font-size: 12px; font-style: italic; }
-div#page-header svg .clef { font-family: "Notes"; font-size: 34px; }
-
-div#page-header > svg { 
-	margin-left: 30px;
-	}
