@@ -1,6 +1,6 @@
 ﻿/*
  *	page.css
- *	2021-12-23 usp
+ *	2022-01-24 usp
  */
 
 @import url( colors.css );
@@ -117,10 +117,9 @@ figcaption {
 	font-family : "Times New Roman";
 	font-style : italic ;
 	color: #A0A0A0 ;
-	margin-bottom : 5px;
 	margin-left : 0px ;
 	margin-top : 15px ;
-	margin-bottom : 10px ;
+	margin-bottom : 0px;
 	padding-left : 10px ;
 	padding-bottom : 5px ;
 	border-bottom : 1px solid silver;
@@ -132,7 +131,7 @@ figcaption+pre {
 	}
 
 figcaption+iframe {
-	margin-top : 0px ;
+	margin-top : 10px ;
 	margin-bottom : 20px ;
 	border-style : none ;
 	border-top-style : solid ;
@@ -196,16 +195,26 @@ table.centered tbody td {
 	}
 
 table.flat-borders {
-	border-collapse: collapse;
+	border-spacing : 0px ;
 	}
 
-table.flat-borders td, th {
-	border : solid 1px silver;
+table.flat-borders tr * {
+	border-width : 1px ;
+	border-color : #BBB ;
+	border-style : none solid solid none ;
 	padding-left: 5px;
 	padding-right: 5px;
 	}
+
+table.flat-borders :first-child :first-child * {
+	border-top-style : solid ;
+	}
+
+table.flat-borders tr :first-child {
+	border-left-style : solid ;
+	}
 	
-table.no-borders td, th {
+table.no-borders tr * {
 	border-style : none ;
 	}
 
@@ -214,6 +223,6 @@ tr.column-headers {
 	line-height : 15px ;
 	}
 
-tr.column-headers td, th {
+tr.column-headers * {
 	padding-right : 10px ;
 	}

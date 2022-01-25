@@ -9,10 +9,10 @@
 #navigation-panel a { color: inherit; }
 body { color : #333; }
 cc { color : #4b4; }
-figcaption+iframe { background-color : #F8F0C0; }
-figcaption+pre { background-color : #fff7e6; }
+figcaption+iframe { background-color : white; }
+figcaption+pre { background-color : #F0F0F0; }
 h1.page-title { color : #6060A0; }
 h1, h2, h3, h4, h5, h6 { color : #6060A0 ; }
 hi { color: #E77F00 ; }
-pre { color : #303080; background-color : #f8f8f8 ; }
+pre { color : #303080; background-color : #FFF ; }
 tt { color : #8080D0; }
