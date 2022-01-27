@@ -6,7 +6,6 @@
 	/* Column header cells: Table cells in the first THEAD row */
 	position : sticky ;
 	top : 0px ;
-	background-color : white ;
 	border-top-style : none ;
 	}
 table.sticky-headers tr :first-child {
@@ -14,7 +13,6 @@ table.sticky-headers tr :first-child {
 	border-left-style : none ;
 	position : sticky ;
 	left : 0px ;
-	background-color : white ;
 	}
 table.sticky-headers :first-child :first-child :first-child {
 	/* Cell in the top left corner */
@@ -24,7 +22,6 @@ table.sticky-headers thead:not(:first-child) * {
 	/* Row-group header rows */
 	position : sticky ;
 	top : 27px ;  /* This must be adjusted to the proper line height */
-	background-color : white ;
 	z-index : 1 ;
 	border-top-style : solid ;
 	}

@@ -1,15 +1,16 @@
-﻿/*
+/*
  *	page.css
- *	2022-01-24 usp
+ *	2022-01-27 usp
  */
 
-@import url( colors.css );
 @import url( header-2.css );
 @import url( footer-2.css );
 @import url( toolbar/toolbar-2.css );
 @import url( collapsible/collapsible-5.css );
 @import url( navigation/navigation-3.css );
 @import url( counter.css );
+@import url( colors.css );
+@import url( colors.css );
 
 @font-face { 
 	font-family: "arial narrow"; 
