@@ -1,82 +1,131 @@
-﻿//
+//
 // collapsible-block-5.js  2021-08-27  usp
 //
 
-export function initPage ( container ) {
-	// Decorate controller elements in collapsible trees.
-	console.log( "collapsible:initPage" );
-	if ( ! container ) container = document;
-	let collapsibles = container.querySelectorAll( ".collapsible" );
-	for ( let i = 0 ; i < collapsibles.length ; i ++ ) {
-		let collapsible = collapsibles[ i ];
-		let blocks = collapsible.querySelectorAll( "UL" );
+const urlDefaultState = new URLSearchParams( document.location.search ).get( "cbc-override" );
+const blockTransitionStyle = "height 0.5s linear " ;
+const controllerTransitionStyle = "margin-top 0.5s linear" ;
+
+function getInitialControllerState ( e ) {
+	///		Determine the initial state of a cbc controller
+	///		The initial state of a controller is defined manually, or by a cbc-default attribute 
+	///		of a parent container, or "expanded". 
+	///		The initial state can be overridden by an url parameter "cbc-override", except if
+	///		a parent container has an attribute "cbc-no-override".
+	let initialState = e.getAttribute( "cbc" ) ;
+	let preventOverride = false ;
+	while ( ! initialState && ! preventOverride  ) { 
+		if ( ! e.getAttribute ) break ;
+		preventOverride = preventOverride || e.hasAttribute( "cbc-no-override" )
+		initialState = initialState || e.getAttribute( "cbc-default" );
+		e = e.parentNode ; 
+		} 
+	if ( ! preventOverride ) initialState = urlDefaultState || initialState ;
+	return initialState || "expanded" ; 
+	}
+function initCollapsibleULtrees( container = document ) {
+	const trees = container.querySelectorAll( "ul.collapsible" );
+	for ( let i = 0 ; i < trees.length ; i ++ ) {
+		const tree = trees[ i ];
+		const blocks = tree.querySelectorAll( "UL" );   // all nested lists
 		for ( let j = 0 ; j < blocks.length ; j ++ ) {
 			let block = blocks[ j ];
-			// Set a reference from controller to associated collapsible block.
 			let controller = block.parentNode;
-			if ( ! controller.hasAttribute( "cbc" )) controller.setAttribute( "cbc", "expanded" );
+			while ( controller.tagName !== "LI" ) controller = controller.parentNode ;
+				// Set initial controller state if necessary.
+			let controllerState = getInitialControllerState( controller );
+			controller.setAttribute( "cbc", controllerState );	
+			controller.addEventListener( "click", iconClickHandler );
+				// Register collapsible block with block controllers.
 			if ( ! controller.synesis ) controller.synesis = { } ;
-			controller.synesis.collapsibleBlock = block ;
-			}
-		let statics = collapsible.querySelectorAll( "LI:not([cbc])" );
-		for ( let j = 0 ; j < statics.length ; j ++ ) statics[ j ].setAttribute( "cbc", "static" );
-		}
-	// Prepare collapsible blocks and their controllers
-	let controllers = container.querySelectorAll( "[cbc]" );
-	const defaultState = new RegExp( "collapse=all" )
-		.test( document.location.search ) ? "collapsed" : "expanded" ;
+			controller.synesis.collapsibleBlocks = [ block ];
+				// Initialize inline styles.
+			block.style.transition = blockTransitionStyle;
+			block.style.height = controllerState === "collapsed" ? "0px" : block.scrollHeight + "px" ;
+			block.addEventListener( "transitionend", transitionEndHandler );
+	}	}	}
+function initCollapsibleDLtrees ( container = document ) {
+		// Find all block controllers in a collapsible DL
+	const controllers = container.querySelectorAll( "dl.collapsible > dt" ) ;
 	for ( let i = 0 ; i < controllers.length ; i ++ ) {
-		let controller = controllers[ i ];
-		if ( controller.getAttribute( "cbc" ) === "" ) controller.setAttribute( "cbc", defaultState );
-		else if ( controller.getAttribute( "cbc" ) === "static" ) continue;
-		// Set a reference from controller to collapsible block if not done above.
-		controller.synesis = controller.synesis || { } ;
-		let block =  controller.synesis.collapsibleBlock;
-		if ( ! block ) {
-			block = controller.synesis.collapsibleBlock = controller.nextElementSibling ;
-			if ( block ) {
-				// It is easier to set the block styles here than in CSS.
-				block.style.transition = "max-height 0.6s ease-out" ;
-				block.style.overflow = "hidden" ;
-				} }
-		// Initialize controller state and add event handlers.
-		if ( controller.getAttribute( "cbc" ) === "collapsed" ) block.style.maxHeight = "0px" ;
-		controller.addEventListener( "click" , iconClickHandler );
+		const controller = controllers[ i ];
+			// Set initial controller state if necessary.
+		let controllerState = getInitialControllerState( controller );
+		controller.setAttribute( "cbc", controllerState );	
+		controller.addEventListener( "click", iconClickHandler );
+			// Register all collapsible blocks with block controllers.
+		if ( ! controller.synesis ) controller.synesis = { } ;
+		controller.synesis.collapsibleBlocks = [ ];
+		let block = controller.nextElementSibling ;
+		while ( block && block.tagName === "DD" ) {
+			controller.synesis.collapsibleBlocks.push( block );
+			block.style.transition = blockTransitionStyle;
+			block.addEventListener( "transitionend", transitionEndHandler );
+			block.style.height = controllerState === "collapsed" ? "0px" : "auto" ;
+			block = block.nextElementSibling ;
+	}	}	}
+function initCollapsibleChapters ( container = document ) {
+		// Find all block controllers in a collapsible 
+	const controllers = container.querySelectorAll( "h1[cbc],h2[cbc],h3[cbc],h4[cbc],h5[cbc]" ) ;  // All heading elements with a cbc attribute
+	for ( let i = 0 ; i < controllers.length ; i ++ ) {
+		const controller = controllers[ i ];
+			// Set initial controller state if necessary.
+		let controllerState = getInitialControllerState( controller );
+		controller.setAttribute( "cbc", controllerState );	
+		controller.addEventListener( "click", iconClickHandler );
+		controller.style.transition = controllerTransitionStyle ;
+			// Register collapsible block with block controller.
+		const block = controller.nextElementSibling ;   // usually a DIV element
+		if ( ! controller.synesis ) controller.synesis = { } ;
+		controller.synesis.collapsibleBlocks = [ block ];
+			// Initialize inline styles.
+		block.style.transition = blockTransitionStyle;
+		block.style.height = controllerState === "collapsed" ? "0px" : "auto" ;
 		block.addEventListener( "transitionend", transitionEndHandler );
-		} 
+	}	}
+export function initPage ( container ) {
+		///		Decorate controller elements in collapsible trees.
+	console.info( "collapsible:initPage" );
+	initCollapsibleULtrees( container );
+	initCollapsibleDLtrees( container );
+	initCollapsibleChapters( container );
 	}
 
 function toggleBlockState( controller ) {
-	const block = controller.synesis.collapsibleBlock ;
 	if ( controller.getAttribute( "cbc" ) === "collapsed" ) expand ( controller );
 	else if ( controller.getAttribute( "cbc" ) === "expanded" ) collapse( controller );
 	}
 	
 function iconClickHandler ( evt ) { 
-	// if ( evt.x > 30 ) return;
-	if ( ! this.synesis || ! this.synesis.collapsibleBlock || evt.target.tagName === "A" ) return ;
+	if ( ! this.synesis || ! this.synesis.collapsibleBlocks || evt.target.tagName === "A" || evt.offsetX > 30 || evt.offsetY > this.scrollHeight ) 
+		return ;
 	toggleBlockState( this );
 	evt.preventDefault();
 	evt.stopPropagation( );
 	}
 
 function transitionEndHandler ( evt ) { 
-	if ( evt.target.style.maxHeight !== "0px" ) evt.target.style.maxHeight = "none" ;
+	if ( evt.target.style.height !== "0px" ) evt.target.style.height = "auto" ;
 	evt.preventDefault();
 	evt.stopPropagation( );
 	}
 
 function expand( controller ) {
-	const block = controller.synesis.collapsibleBlock;
-	block.style.maxHeight = block.scrollHeight + "px";
+	controller.synesis.collapsibleBlocks.forEach ( block => {
+		block.style.height = "auto" ;
+		const height = block.scrollHeight + "px" ;
+		block.style.height = "0px" ;
+		window.requestAnimationFrame (( function( ) { this.style.height = height } ).bind( block )) ;
+		}	)
 	controller.setAttribute( "cbc", "expanded" );
 	}
 
 function collapse( controller ) {
-	const block = controller.synesis.collapsibleBlock;
-	block.style.maxHeight = block.scrollHeight + "px" ;
+	controller.synesis.collapsibleBlocks.forEach ( block => {
+		block.style.height = block.scrollHeight + "px" ;
+		window.requestAnimationFrame( (function ( ) {  this.style.height = "0px" } ).bind( block )) ;
+		}	)
 	controller.setAttribute( "cbc", "collapsed" );
-	window.requestAnimationFrame( function ( ) { block.style.maxHeight = "0px" ; } ) ;
 	}
 
 export function expandAllBlocks (  ) {
@@ -96,13 +145,13 @@ export function toggleAllBlocks ( evt ) {
 	}
 
 export function expandPath( id ) {
+	///		Ensures that an element is not in a collapsed block
 	let e = document.getElementById( id );
 	if ( ! e ) return;
 	if ( e.tagName === "LI" ) {
-		if ( e.getAttribute( "cbc" ) === "collapsed" ) iconClickHandler( { target : e } );
-		e = e.parentNode;
-		}
+		if ( e.getAttribute( "cbc" ) === "collapsed" ) iconClickHandler( { target : e } ) ;
+		e = e.parentNode ; } 
 	else {
-		if ( e.previousElementSibling.getAttribute( "cbc" ) === "collapsed" ) iconClickHandler( { target : e.previousElementSibling } ) ;
+		if ( e.previousElementSibling.getAttribute( "cbc" ) === "collapsed" ) iconClickHandler( { target : e.previousElementSibling , offsetX : 0 , offsetY : 0 } ) ;
 		e = e.parentNode;
 		} }
