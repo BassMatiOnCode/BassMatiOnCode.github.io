@@ -1,9 +1,9 @@
 ﻿//
-// navigation-panel.js  2021-08-03  usp
+// navigation-3.js  2022-02-04  usp
 //
 
 	// Store a reference to the frequently needed navigation panel
-let navpanel;
+let navpanel = document.getElementById( "navigation-panel" );
 	// Special site links
 export let parent = "#", first = "#", previous = "#", next = "#", last = "#" ;
 	// Link list, the nodes between root and the current document node
@@ -11,32 +11,55 @@ export let parents = [ ] ;
 
 export function initPage ( tocsrc = "/toc.htm" ) {
 	/// tocsrc : path to the table-of-contents file
-	navpanel = navpanel || document.createElement( "DIV" );
-	navpanel.id = "navigation-panel" ;
-	navpanel.setAttribute( "load-src", tocsrc );
-	navpanel.style.maxWidth = "0px" ;
+	if ( ! navpanel ) {
+		navpanel = document.body.appendChild( document.createElement( "DIV" ));
+		navpanel.id = "navigation-panel" ;
+		const toolbar = navpanel.appendChild( document.createElement( "DIV" ));
+		let button = toolbar. appendChild( document.createElement( "BUTTON" ));
+		button.innerText = "Close" ;
+		button.addEventListener( "click" , function ( ) {
+			navpanel.style.width = navpanel.scrollWidth + "px" ;
+			window.requestAnimationFrame( ( ) => navpanel.style.width = "0px" ) ; 
+			} ) ;
+		}
+	navpanel.style.width = "0px" ;
+	let tocroot = navpanel.querySelector( "#toc-root" );
+	if ( ! tocroot ) {
+		tocroot = navpanel.appendChild( document.createElement( "UL" ));
+		tocroot.id = "toc-root" ;
+		tocroot.className = "collapsible" ;
+		}
+	if ( ! tocroot.hasAttribute( "load-src" )) tocroot.setAttribute( "load-src", tocsrc );
+	tocroot.setAttribute( "cbc-default", "collapsed" );
 	navpanel.addEventListener( "transitionend", transitionEndHandler );
 	navpanel.addEventListener( "click", panelClickHandler );
-	document.body.insertBefore( navpanel, null );	
 	}
 
 function panelClickHandler ( evt ) {
 	if ( evt.target.id === "navigation-panel" ) navigateButtonClickHandler( evt );
 	}
 
-export function navigateButtonClickHandler ( evt ) {
-	if ( navpanel.style.maxWidth === "0px" ) 
-		navpanel.style.maxWidth = Math.min( navpanel.firstElementChild.scrollWidth, document.body.clientWidth ) + "px" ;
+export function toggleNavigationPane ( ) {
+	if ( navpanel.style.width === "0px" ) {
+		// Temporarily switch width to auto to determine the correct scroll width.
+		navpanel.style.width = "auto" ;
+		const w = navpanel.scrollWidth + "px" ;
+		navpanel.style.width = "0px" ;
+		window.requestAnimationFrame( function ( ) { navpanel.style.width = w ; } ) ; } 
 	else {
-		if ( navpanel.style.maxWidth === "none" ) navpanel.style.maxWidth = document.body.clientWidth + "px" ;
-		window.requestAnimationFrame( ( ) => navpanel.style.maxWidth = "0px" ) ;
+		navpanel.style.width = navpanel.scrollWidth + "px" ;
+		window.requestAnimationFrame( ( ) => navpanel.style.width =  "0px" ) ; 
 		}
+	}
+
+export function navigateButtonClickHandler ( evt ) {
+	toggleNavigationPane( );
 	evt.preventDefault( );
 	evt.stopPropagation( );
 	}
 
 function transitionEndHandler ( evt ) {
-	if ( evt.target.style.maxWidth === document.body.clientWidth + "px" ) evt.target.style.maxWidth = "none" ;
+	if ( evt.target.style.width !== "0px" ) evt.target.style.width = "auto" ;
 	evt.preventDefault();
 	evt.stopPropagation( );
 	}
@@ -65,7 +88,7 @@ export function activateLinkChain( e ) {
 			e.setAttribute( "active", "" );
 			if ( e.getAttribute( "cbc" ) === "collapsed" ) {
 				e.setAttribute( "cbc", "expanded" );
-				e.synesis.collapsibleBlock.style.maxHeight = e.synesis.collapsibleBlock.scrollHeight + "px";
+				e.synesis.collapsibleBlocks[ 0 ].style.height = e.synesis.collapsibleBlocks[ 0 ].scrollHeight + "px";
 	} } } 
 	if (parents.length > 0) parents.pop( );
 	}
