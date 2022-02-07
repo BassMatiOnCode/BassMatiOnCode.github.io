@@ -47,7 +47,7 @@
 	}
 .imgbox {
 	border : 1px solid silver;
-	width : 100% ;
+	width : auto;
 	overflow : auto ;
 	}
 

@@ -1,5 +1,5 @@
 //
-// collapsible-block-5.js  2021-08-27  usp
+// collapsible-block-5.js  2022-02-06  usp
 //
 
 const urlDefaultState = new URLSearchParams( document.location.search ).get( "cbc-override" );
@@ -24,10 +24,10 @@ function getInitialControllerState ( e ) {
 	return initialState || "expanded" ; 
 	}
 function initCollapsibleULtrees( container = document ) {
-	const trees = container.querySelectorAll( "ul.collapsible" );
+	const trees = container.querySelectorAll( "ul.collapsible,ol.collapsible" );
 	for ( let i = 0 ; i < trees.length ; i ++ ) {
 		const tree = trees[ i ];
-		const blocks = tree.querySelectorAll( "UL" );   // all nested lists
+		const blocks = tree.querySelectorAll( "UL,OL" );   // all nested lists
 		for ( let j = 0 ; j < blocks.length ; j ++ ) {
 			let block = blocks[ j ];
 			let controller = block.parentNode;
@@ -41,8 +41,10 @@ function initCollapsibleULtrees( container = document ) {
 			controller.synesis.collapsibleBlocks = [ block ];
 				// Initialize inline styles.
 			block.style.transition = blockTransitionStyle;
-			block.style.height = controllerState === "collapsed" ? "0px" : block.scrollHeight + "px" ;
+			block.style.height = controllerState === "collapsed" ? "0px" : "auto" ;
 			block.addEventListener( "transitionend", transitionEndHandler );
+				// The element following the collapsible block is affected by collapsing vertical margins...
+		if ( block.nextElementSibling ) block.nextElementSibling.style.transition = controllerTransitionStyle ;
 	}	}	}
 function initCollapsibleDLtrees ( container = document ) {
 		// Find all block controllers in a collapsible DL
@@ -61,9 +63,13 @@ function initCollapsibleDLtrees ( container = document ) {
 			controller.synesis.collapsibleBlocks.push( block );
 			block.style.transition = blockTransitionStyle;
 			block.addEventListener( "transitionend", transitionEndHandler );
+				// Initialize inline styles.
 			block.style.height = controllerState === "collapsed" ? "0px" : "auto" ;
 			block = block.nextElementSibling ;
-	}	}	}
+			}
+			// The element following the collapsible block is affected by collapsing vertical margins...
+		if ( block && block.nextElementSibling ) block.nextElementSibling.style.transition = controllerTransitionStyle ;
+	}	}
 function initCollapsibleChapters ( container = document ) {
 		// Find all block controllers in a collapsible 
 	const controllers = container.querySelectorAll( "h1[cbc],h2[cbc],h3[cbc],h4[cbc],h5[cbc]" ) ;  // All heading elements with a cbc attribute
@@ -73,7 +79,6 @@ function initCollapsibleChapters ( container = document ) {
 		let controllerState = getInitialControllerState( controller );
 		controller.setAttribute( "cbc", controllerState );	
 		controller.addEventListener( "click", iconClickHandler );
-		controller.style.transition = controllerTransitionStyle ;
 			// Register collapsible block with block controller.
 		const block = controller.nextElementSibling ;   // usually a DIV element
 		if ( ! controller.synesis ) controller.synesis = { } ;
@@ -82,6 +87,8 @@ function initCollapsibleChapters ( container = document ) {
 		block.style.transition = blockTransitionStyle;
 		block.style.height = controllerState === "collapsed" ? "0px" : "auto" ;
 		block.addEventListener( "transitionend", transitionEndHandler );
+			// The element following the collapsible block is affected by collapsing vertical margins...
+		if ( block.nextElementSibling ) block.nextElementSibling.style.transition = controllerTransitionStyle ;
 	}	}
 export function initPage ( container ) {
 		///		Decorate controller elements in collapsible trees.
