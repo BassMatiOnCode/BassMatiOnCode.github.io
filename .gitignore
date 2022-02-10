@@ -1,8 +1,11 @@
 .vs/
 .git/
-/inc/music/
-/inc/svg-1.js
-/web-design-toolbox
-/web-technologies
-/music-toolbox
-logo1.svg
+docs/hardware
+docs/inc
+docs/music-toolbox
+docs/os-win
+docs/postgres
+docs/typescript
+docs/web-design-toolbox
+docs/web-technologies
+
