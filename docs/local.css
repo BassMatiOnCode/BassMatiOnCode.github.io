@@ -1,0 +1,6 @@
+/* 
+ *		site-root/local.css 
+ */
+
+ table.flat-borders th { font-weight : normal ; text-align : left }
+ table.flat-borders td { text-align : center }
