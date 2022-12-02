@@ -1,6 +1,9 @@
 /* 
- *		site-root/local.css 
+ *		site-root.css 
  */
 
  table.flat-borders th { font-weight : normal ; text-align : left }
  table.flat-borders td { text-align : center }
+
+ figure img { border : 1px solid silver }
+ figure object { border : 1px solid silver }
