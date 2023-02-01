@@ -7,3 +7,5 @@
 
  figure img { border : 1px solid silver }
  figure object { border : 1px solid silver }
+
+ table.flat-borders tbody th { background-color : #EEE }
