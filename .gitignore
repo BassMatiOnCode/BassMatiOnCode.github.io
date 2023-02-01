@@ -2,3 +2,12 @@
 .git/
 /inc
 docs/spreadsheet
+docs/deno
+docs/hardware
+docs/mariadb
+docs/music-toolbox
+docs/postgres
+docs/sql
+docs/typescript
+doc/web-technologies
+doc/web-toolbox
