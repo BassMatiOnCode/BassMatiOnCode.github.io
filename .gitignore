@@ -1,12 +1,6 @@
 .vs/
 .git/
 /docs/inc
-/docs/deno
-/docs/hardware
-/docs/mariadb
-/docs/music-toolbox
-/docs/postgres
-/docs/sql
-/docs/typescript
-/docs/web-technologies
-/docs/web-toolbox
+/docs/html
+/docs/javascript
+/docs/web-cat
