@@ -1,0 +1,28 @@
+.subtitle {
+	text-align : center ;
+	}
+body {
+	line-height : 1.4 ;
+	font-size : 18px ;
+	}
+figure {
+	margin : 0 5px ;
+	}
+h1 {
+	font-size : 28px ;
+	text-align : center ;
+	}
+h1, h2, h3, h4, h5, h6 {
+	margin-top : 40px ;
+	}
+h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
+	margin-top : 20px ;
+	}
+pre {
+	font-family : "inconsolata condensed" , monospace ;
+	font-variation-settings : "wdth" 90 ;
+	}
+tt {
+	font-family : "inconsolata condensed" , monospace ;
+	font-variation-settings : "wdth" 70 ;
+	}

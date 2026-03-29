@@ -1,0 +1,40 @@
+
+/* Standard content document configuration  */
+
+@import url( /inc/webcat/spa/spa-iframe-content.css );
+@import url( /inc/webcat/collapsible-structures/collapsible-structures.css );
+@import url(/inc/webcat/style-components/sourcecode.css );
+@import url(/inc/webcat/content-height-observer/content-height-observer.css );
+@import url( /colors.css );
+@import url( /local.css );
+
+@font-face { 
+	font-family: "arial narrow"; 
+	font-style: normal; 
+	font-weight: 400;
+	src: 	local("Arial Narrow"), 
+		local("ArialNarrow-Regular"), 
+		url(/inc/fonts/arial-narrow.woff) format("woff"), 
+		url(/inc/fonts/arial-narrow.ttf) format("truetype");
+	}
+@font-face { 
+		/* unused */
+	font-family: "droid sans mono"; 
+	font-style: normal; 
+	font-weight: 400;
+	src: 	local("droid sans mono"), 
+		url(/inc/fonts/DroidSansMono.ttf) format("truetype");
+	}
+@font-face { 
+	font-family: "M PLUS 1 CODE"; 
+	font-style: normal; 
+	font-weight: 400;
+	src: 	local("M PLUS 1 CODE"), 
+		url(/inc/fonts/MPLUS1Code-VariableFont_wght.ttf) format("truetype");
+	}
+@font-face {
+		/* for code listing blocks */	
+	font-family: "inconsolata condensed"; 
+	src: 	local("inconsolata condensed"), 
+		url(/inc/fonts/Inconsolata-variable-wdth-wght.ttf) format("truetype");
+	}

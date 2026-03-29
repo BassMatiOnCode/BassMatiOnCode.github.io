@@ -1,12 +1,12 @@
 .vs/
 .git/
-/docs/inc
-/docs/html
-/docs/javascript
-/docs/git
 /docs/deno
 /docs/fonts
+/docs/html
+/docs/inc
+/docs/javascript
 /docs/math
+/docs/sw-git
 /docs/webcat
 /docs/wsh
-
+/docs/stream-downloader
