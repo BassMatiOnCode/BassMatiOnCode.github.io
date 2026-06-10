@@ -1,3 +1,4 @@
+
 .vs/
 .git/
 /docs/deno
@@ -9,9 +10,10 @@
 /docs/os-win
 /docs/shopping
 /docs/spreadsheet
+/docs/stream-downloader
 /docs/sw-git
 /docs/web-components
 /docs/web-technologies
 /docs/webcat
 /docs/wsh
-/docs/stream-downloader
+/2026-06-10
